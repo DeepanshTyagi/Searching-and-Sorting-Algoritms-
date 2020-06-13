@@ -1,0 +1,40 @@
+import java.io.*;
+public class BinarySearchRecursive
+{
+	public static int BinarySearchRecursive(int[] arr,int target,int start,int end)
+	{
+		if(start>end) return -1; // base case 
+		int mid=(start+end)/2;
+		if(arr[mid]==target) return mid;
+		else if(arr[mid]<target) return BinarySearchRecursive(arr,target,mid+1,end); 
+	    return BinarySearchRecursive(arr,target,start,mid-1);
+	}
+
+	public static void main(String []args) throws Exception
+	{
+		BufferedReader inp=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter the Size of Array");
+		int n=Integer.parseInt(inp.readLine());
+		int[] arr=new int[n];
+		System.out.println("Enter the Elements of the array");
+		String line=inp.readLine(); // To take the array in one line 
+		String[] str=line.trim().split("\\s+");
+
+		for(int i=0;i<n;i++)
+		{
+			arr[i]=Integer.parseInt(str[i]);
+		}
+
+		System.out.println("Enter the value you want to find");
+		int val=Integer.parseInt(inp.readLine());
+        int index=BinarySearchRecursive(arr,val,0,n-1);
+        if(index<0)
+        {
+            System.out.println("Sorry we can't find entered value in the present array");
+        }
+        else
+        {
+        	System.out.println("Value "+val+" find at "+index+" Index");
+        }
+	}
+}
